@@ -1,1 +1,1 @@
-# terraform-google-github-actions-runners
+# gcp-mig-github-action-runner
