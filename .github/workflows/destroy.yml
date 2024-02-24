@@ -26,7 +26,7 @@ jobs:
       env:
         GOOGLE_CREDENTIALS: ${{ secrets.GCE_SA_KEY }}
       run: |
-        terraform init
+        terraform init &&
         terraform destroy -auto-approve \
           -var="project_id=${{ secrets.GCP_PROJECT_ID }}" \
           -var="credentials=${{ secrets.GCE_SA_KEY }}"
