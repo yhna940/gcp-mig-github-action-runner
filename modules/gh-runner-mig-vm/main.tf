@@ -116,7 +116,7 @@ module "mig_template" {
       "https://www.googleapis.com/auth/cloud-platform",
     ]
   }
-  disk_size_gb         = 100
+  disk_size_gb         = var.dist_size_gb
   disk_type            = "pd-ssd"
   auto_delete          = true
   name_prefix          = "gh-runner"

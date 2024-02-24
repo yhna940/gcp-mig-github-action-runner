@@ -90,6 +90,12 @@ variable "machine_type" {
   default     = "c3-highcpu-176"
 }
 
+variable "dist_size_gb" {
+  type        = number
+  description = "The size of the disk in GB"
+  default     = 500
+}
+
 variable "source_image_family" {
   type        = string
   description = "Source image family. If neither source_image nor source_image_family is specified, defaults to the latest public Ubuntu image."
