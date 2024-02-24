@@ -64,12 +64,12 @@ variable "gh_runner_labels" {
 variable "min_replicas" {
   type        = number
   description = "Minimum number of runner instances"
-  default     = 2
+  default     = 10
 }
 
 variable "max_replicas" {
   type        = number
-  default     = 10
+  default     = 30
   description = "Maximum number of runner instances"
 }
 
