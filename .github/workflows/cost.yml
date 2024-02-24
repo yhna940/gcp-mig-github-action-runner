@@ -2,7 +2,7 @@ name: Cost Estimation
 
 on:
   pull_request:
-    types: [opened, synchronize, closed]
+    types: [opened, reopened, synchronize, closed]
 
 jobs:
   infracost-pull-request-checks:
