@@ -1,1 +1,1 @@
-# terraform-google-github-actions-runners
+# gh-runner-mig-vm
