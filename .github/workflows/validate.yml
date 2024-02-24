@@ -1,4 +1,4 @@
-name: Terraform Checks
+name: Terraform Validate
 
 on:
   push:
@@ -23,8 +23,7 @@ jobs:
     - name: Terraform Format
       run: terraform fmt -check
 
-    - name: Terraform Init
-      run: terraform init
-
-    - name: Terraform Validate
-      run: terraform validate
+    - name: Terraform Init and Validate
+      run: |
+        terraform init
+        terraform validate
