@@ -87,7 +87,7 @@ variable "service_account" {
 variable "machine_type" {
   type        = string
   description = "The GCP machine type to deploy"
-  default     = "n1-standard-1"
+  default     = "n2d-highcpu-224"
 }
 
 variable "source_image_family" {
