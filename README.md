@@ -1,1 +1,1 @@
-# gh-runner-mig-vm
+# gcp-mig-github-action-runner
