@@ -9,34 +9,24 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: google auth
-      id: "auth"
-      uses: "google-github-actions/auth@v1"
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Google Auth
+      uses: google-github-actions/auth@v1
       with:
         credentials_json: "${{ secrets.GCE_SA_KEY }}"
-
-    - name: set up Cloud SDK
-      uses: "google-github-actions/setup-gcloud@v1"
-      with:
-        project_id: ${{ secrets.GCP_PROJECT_ID }}
-
-    - name: use gcloud cli
-      run: "gcloud info"
-
-    - uses: actions/checkout@v2
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v1
       with:
         terraform_version: 1.0.0
 
-    - name: Terraform Init
-      run: terraform init
-
-    - name: Terraform Destroy
+    - name: Terraform Init and Destroy
+      env:
+        GOOGLE_CREDENTIALS: ${{ secrets.GCE_SA_KEY }}
       run: |
+        terraform init
         terraform destroy -auto-approve \
           -var="project_id=${{ secrets.GCP_PROJECT_ID }}" \
-          -var="repo_name=${{ secrets.REPO_NAME }}" \
-          -var="repo_owner=${{ secrets.REPO_OWNER }}" \
-          -var="gh_token=${{ secrets.GH_TOKEN }}"
+          -var="credentials=${{ secrets.GCE_SA_KEY }}"
