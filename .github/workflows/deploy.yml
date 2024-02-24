@@ -1,0 +1,59 @@
+name: Terraform CI/CD
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    types: [opened, reopened, synchronize]
+
+jobs:
+  terraform-format-validate:
+    name: Terraform Format and Validate
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v1
+        with:
+          terraform_version: 1.0.0
+
+      - name: Terraform Format
+        run: terraform fmt -check
+
+      - name: Terraform Init and Validate
+        run: |
+          terraform init
+          terraform validate
+
+  terraform-apply:
+    name: Terraform Apply
+    needs: terraform-format-validate
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Google Auth
+        uses: google-github-actions/auth@v1
+        with:
+          credentials_json: "${{ secrets.GCE_SA_KEY }}"
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v1
+        with:
+          terraform_version: 1.0.0
+
+      - name: Terraform Init and Apply
+        env:
+          GOOGLE_CREDENTIALS: ${{ secrets.GCE_SA_KEY }}
+        run: |
+          terraform init
+          terraform apply -auto-approve \
+            -var="project_id=${{ secrets.GCP_PROJECT_ID }}" \
+            -var="repo_name=${{ secrets.REPO_NAME }}" \
+            -var="repo_owner=${{ secrets.REPO_OWNER }}" \
+            -var="gh_token=${{ secrets.GH_TOKEN }}"
