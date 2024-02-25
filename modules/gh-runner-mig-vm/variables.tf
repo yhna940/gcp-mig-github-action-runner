@@ -29,7 +29,7 @@ variable "subnetwork_project" {
 variable "subnet_ip" {
   type        = string
   description = "IP range for the subnet"
-  default     = "10.10.10.0/24"
+  default     = "10.10.0.0/16"
 }
 
 variable "create_subnetwork" {
@@ -87,7 +87,7 @@ variable "service_account" {
 variable "machine_type" {
   type        = string
   description = "The GCP machine type to deploy"
-  default     = "n1-standard-1"
+  default     = "c3-highcpu-176"
 }
 
 variable "source_image_family" {
