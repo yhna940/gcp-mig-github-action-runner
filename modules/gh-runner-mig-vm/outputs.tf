@@ -26,4 +26,5 @@ output "subnet_name" {
 output "service_account" {
   description = "Service account email for GCE"
   value       = local.service_account
+  sensitive   = true
 }

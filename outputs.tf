@@ -11,6 +11,7 @@ output "mig_name" {
 output "service_account" {
   description = "Service account email for GCE"
   value       = module.runner-mig.service_account
+  sensitive   = true
 }
 
 output "mig_instance_template" {
