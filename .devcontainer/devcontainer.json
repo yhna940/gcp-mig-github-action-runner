@@ -1,0 +1,57 @@
+{
+    "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+    "features": {
+      "ghcr.io/devcontainers/features/common-utils:2": {
+        "configureZshAsDefaultShell": true,
+        "username": "vscode"
+      },
+      "ghcr.io/devcontainers-contrib/features/direnv:1": {},
+      "ghcr.io/devcontainers-contrib/features/pipx-package:1": {
+        "package": "python-dotenv[cli]"
+      },
+      "ghcr.io/dhoeric/features/google-cloud-cli:1": {},
+      "ghcr.io/joshuanianji/devcontainer-features/gcloud-cli-persistence:1": {}
+    },
+    "postCreateCommand": ["scripts/install-dev-tools.sh"],
+    "customizations": {
+      "vscode": {
+        "extensions": [
+          // cSpell:disable
+          "-rust-lang.rust-analyzer",
+          "-serayuzgur.crates",
+          "-vadimcn.vscode-lldb",
+          "bierner.emojisense",
+          "bierner.markdown-emoji",
+          "charliermarsh.ruff",
+          "christian-kohler.path-intellisense",
+          "davidanson.vscode-markdownlint",
+          "dotenv.dotenv-vscode",
+          "eamodio.gitlens",
+          "editorconfig.editorconfig",
+          "esbenp.prettier-vscode",
+          "foxundermoon.shell-format",
+          "GitHub.copilot",
+          "github.vscode-github-actions",
+          "github.vscode-pull-request-github",
+          "Gruntfuggly.todo-tree",
+          "mhutchie.git-graph",
+          "ms-azuretools.vscode-docker",
+          "ms-toolsai.jupyter",
+          "ms-vscode.makefile-tools",
+          "ms-vsliveshare.vsliveshare",
+          "njpwerner.autodocstring",
+          "redhat.vscode-yaml",
+          "ryanluker.vscode-coverage-gutters",
+          "seatonjiang.gitmoji-vscode",
+          "streetsidesoftware.code-spell-checker",
+          "tamasfe.even-better-toml",
+          "timonwong.shellcheck",
+          "VisualStudioExptTeam.vscodeintellicode",
+          "vscode-icons-team.vscode-icons",
+          "yzhang.markdown-all-in-one"
+          // cSpell:enable
+        ]
+      }
+    }
+  }
+  
